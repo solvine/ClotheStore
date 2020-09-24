@@ -22,11 +22,6 @@ namespace ClothesShop
 
         public void AddItemToBasket(ClothesShopContext db, int itemId)
         {
-            ChooseSizeQuantity(db, itemId);
-            if (Quantity == 0)
-            {
-
-            }
             var existantBasketItem = BasketItems.FirstOrDefault(b => b.ClothingItem == db.ClothingItems.First(c => c.ClothingItemId == itemId).Name && b.Size == Size);
             if (existantBasketItem != null)
             {
@@ -76,6 +71,7 @@ namespace ClothesShop
                 while (item.ClothingItem == clothing && item.Size == Size && item.Quantity + Quantity > availableQuantity)
                 {
                     Console.WriteLine($"Unavailable quantity. Quantity already in basket: {item.Quantity}");
+                    Console.WriteLine("Type 0 to cancel");
                     Quantity = GeneralStaticClass.ReadIntNumber();
                 }
             }

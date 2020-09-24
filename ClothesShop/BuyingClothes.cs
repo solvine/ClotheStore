@@ -97,14 +97,15 @@ namespace ClothesShop
                 var sale = new Sale();
                 sale.AddSale(db, Basket.TotalAmount, shippingAddress, Basket.BasketItems, User.UserId);
                 sale.ChangeSizeQuantityInDb(db, View.Type, Basket.BasketItems);
-                if (User.UserName == "UNKNOWN")
-                {
-                    ActionMenu.ChooseUnregisterUserActions(db);
-                }
-                else
-                {
-                    ActionMenu.ChooseUserActions(db);
-                }
+            }
+            Basket.BasketItems.Clear();
+            if (User.UserName == "UNKNOWN")
+            {
+                ActionMenu.ChooseUnregisterUserActions(db);
+            }
+            else
+            {
+                ActionMenu.ChooseUserActions(db);
             }
         }
     }

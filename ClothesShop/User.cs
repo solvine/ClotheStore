@@ -104,20 +104,30 @@ namespace ClothesShop
             var userFirstName = db.Users.FirstOrDefault(u => u.UserId == UserId).Name;
             if (userFirstName!= "UNKNOWN")
             {
-                Console.WriteLine($"Please pay {payableAmount} EUR, {userFirstName}. Type Y to confirm");
+                Console.WriteLine($"Please pay {payableAmount} EUR, {userFirstName}. Confirm? Y/N");
             }
             else
             {
-                Console.WriteLine($"Please pay {payableAmount} EUR. Type Y to confirm");
+                Console.WriteLine($"Please pay {payableAmount} EUR. Confirm? Y/N");
             }
             
             string paymentConfirmation = Console.ReadLine().ToUpper();
-            while (paymentConfirmation != "Y")
+            while (paymentConfirmation != "Y" && paymentConfirmation != "N")
             {
-                Console.WriteLine("Payment declined. Try again.");
+                Console.WriteLine("Invalid choice. Try again.");
                 paymentConfirmation = Console.ReadLine().ToUpper();
             }
-            return true;
+            if (paymentConfirmation == "Y")
+            {
+                
+                return true;
+            }
+            else
+            {
+                Console.Clear();
+                return false;
+            }
+            
         }
 
         public void ShowUserInfo(ClothesShopContext db)

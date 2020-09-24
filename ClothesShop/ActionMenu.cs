@@ -103,8 +103,17 @@ namespace ClothesShop
             switch (choice)
             {
                 case 1:
-                    BuyingClothes.Basket.AddItemToBasket(db, BuyingClothes.View.ItemId);
-                    ChooseItemActionAfterAddingToBasket(db);
+                    BuyingClothes.Basket.ChooseSizeQuantity(db, BuyingClothes.View.ItemId);
+                    if (BuyingClothes.Basket.Quantity == 0)
+                    {
+                        BuyingClothes.View.ShowItem(db);
+                        ChooseItemAction(db);
+                    }
+                    else
+                    {
+                        BuyingClothes.Basket.AddItemToBasket(db, BuyingClothes.View.ItemId);
+                        ChooseItemActionAfterAddingToBasket(db);
+                    }
                     break;
                 case 2:
                     BuyingClothes.ShowBasket(db);
