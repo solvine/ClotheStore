@@ -138,7 +138,13 @@ namespace ClothesShop
             Console.WriteLine("Please choose your action:");
             Console.WriteLine("1 - Back to Item View");
             Console.WriteLine("2 - Back to HomePage");
-            switch (GeneralStaticClass.ReadIntNumber())
+            int choice = GeneralStaticClass.ReadIntNumber();
+            while (choice != 1 && choice != 2)
+            {
+                Console.WriteLine("There is no such choice");
+                choice = GeneralStaticClass.ReadIntNumber();
+            }
+            switch (choice)
             {
                 case 1:
                     Console.Clear();
@@ -165,7 +171,14 @@ namespace ClothesShop
             Console.WriteLine("4 - Back to Item View");
             Console.WriteLine("5 - Back to HomePage");
 
-            switch (GeneralStaticClass.ReadIntNumber())
+            int choice = GeneralStaticClass.ReadIntNumber();
+            while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5)
+            {
+                Console.WriteLine("There is no such choice");
+                choice = GeneralStaticClass.ReadIntNumber();
+            }
+
+            switch (choice)
             {
                 case 1:
                     BuyingClothes.Checkout(db);
@@ -202,7 +215,14 @@ namespace ClothesShop
             Console.WriteLine("3 - Back to Category View");
             Console.WriteLine("4 - Back to Home Page");
 
-            switch (GeneralStaticClass.ReadIntNumber())
+            int choice = GeneralStaticClass.ReadIntNumber();
+            while (choice != 1 && choice != 2 && choice != 3 && choice != 4)
+            {
+                Console.WriteLine("There is no such choice");
+                choice = GeneralStaticClass.ReadIntNumber();
+            }
+
+            switch (choice)
             {
                 case 1:
                     Console.Clear();
