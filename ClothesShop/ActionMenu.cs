@@ -184,7 +184,8 @@ namespace ClothesShop
                     BuyingClothes.Checkout(db);
                     break;
                 case 2:
-                    BuyingClothes.Basket.UpdateItem();
+                    BuyingClothes.Basket.UpdateItem(db);
+                    Console.WriteLine("Basket updated");
                     BuyingClothes.ShowBasket(db);
                     break;
                 case 3:

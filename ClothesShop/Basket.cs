@@ -97,14 +97,14 @@ namespace ClothesShop
             Console.WriteLine($"TOTAL TO PAY: {TotalAmount} EUR");
         }
 
-        public void UpdateItem()
+        public void UpdateItem(ClothesShopContext db)
         {
             Console.Clear();
             Console.WriteLine("BASKET VIEW");
             ShowBasket();
             Console.WriteLine();
-            int itemToUpdate = GetItemToUpdateNo()-1;
-            int newQuantity = GetNewItemQuantity(itemToUpdate);
+            int itemToUpdate = GetItemToUpdateNo();
+            int newQuantity = GetNewItemQuantity(itemToUpdate, db);
 
             if (newQuantity == 0)
             {
@@ -142,13 +142,20 @@ namespace ClothesShop
             }
         }
 
-        public int GetNewItemQuantity(int itemToUpdate)
+        public int GetNewItemQuantity(int itemToUpdate, ClothesShopContext db)
         {
-            Console.WriteLine("Please provide new quantity");
+           Console.WriteLine($"Updating item {BasketItems[itemToUpdate].ClothingItem}");
+           var clothingItemToUpdate = BasketItems[itemToUpdate].ClothingItem;
+           var sizeToUpdate = BasketItems[itemToUpdate].Size;
+           var dbClothingItemId = db.ClothingItems.FirstOrDefault(c => c.Name == clothingItemToUpdate).ClothingItemId;
+           var availableQuantity = db.ClothingSizes.FirstOrDefault(a => a.ClothingItemId == dbClothingItemId && a.Size == sizeToUpdate).Quantity;
+
+            Console.WriteLine($"Please provide new quantity. Total items available: {availableQuantity}");
             int newQuantity = GeneralStaticClass.ReadIntNumber();
-            while (newQuantity < 0 || newQuantity > BasketItems[itemToUpdate].Quantity)
+
+            while (newQuantity < 0 || newQuantity > availableQuantity)
             {
-                Console.WriteLine("Invalid quantity. Try again!");
+                Console.WriteLine($"Invalid quantity. Total items available: {availableQuantity}");
                 newQuantity = GeneralStaticClass.ReadIntNumber();
             }
             return newQuantity;
@@ -158,12 +165,13 @@ namespace ClothesShop
         {
             Console.WriteLine("Please provide the item number for updating");
             int itemToUpdate = GeneralStaticClass.ReadIntNumber();
-            while (BasketItems.Count() < itemToUpdate || itemToUpdate < 0)
+            while (BasketItems.Count() < itemToUpdate || itemToUpdate <= 0)
             {
                 Console.WriteLine("Invalid choice");
                 itemToUpdate = GeneralStaticClass.ReadIntNumber();
             }
-            return itemToUpdate;
+            Console.WriteLine(itemToUpdate--);
+            return itemToUpdate--;
         }
     }
 }
