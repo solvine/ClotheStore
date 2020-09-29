@@ -19,5 +19,12 @@ namespace ClothesShop
 
             return choice;
         }
+
+       public static void ExitApp()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+        }
     }
 }

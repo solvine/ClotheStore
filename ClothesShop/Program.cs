@@ -10,14 +10,9 @@ namespace ClothesShop
             var shop = new BuyingClothes();
             shop.PurchaceClothes();
 
-            ExitApp();
+            GeneralStaticClass.ExitApp();
         }
 
-        static void ExitApp()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
+  
     }
 }
