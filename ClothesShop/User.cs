@@ -58,6 +58,13 @@ namespace ClothesShop
                 Console.WriteLine("Invalid email. Please provide email");
                 email = Console.ReadLine();
             }
+            while (db.Users.Any(u => u.Email == email))
+            {
+                Console.WriteLine("User with such email address already exists");
+                Console.WriteLine("Please provide your Email");
+                email = Console.ReadLine();
+            }
+
             Email = email;
             db.Users.Add(new User { Address = Address, Email = Email, Name = Name, Surname = Surname, UserName = UserName });
             db.SaveChanges();
