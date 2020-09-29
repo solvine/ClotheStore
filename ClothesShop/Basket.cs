@@ -144,7 +144,7 @@ namespace ClothesShop
 
         public int GetNewItemQuantity(int itemToUpdate, ClothesShopContext db)
         {
-           Console.WriteLine($"Updating item {BasketItems[itemToUpdate].ClothingItem}");
+           Console.WriteLine($"Updating item: {BasketItems[itemToUpdate].ClothingItem} ({BasketItems[itemToUpdate].Size})");
            var clothingItemToUpdate = BasketItems[itemToUpdate].ClothingItem;
            var sizeToUpdate = BasketItems[itemToUpdate].Size;
            var dbClothingItemId = db.ClothingItems.FirstOrDefault(c => c.Name == clothingItemToUpdate).ClothingItemId;

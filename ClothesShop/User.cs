@@ -19,7 +19,7 @@ namespace ClothesShop
             string username = Console.ReadLine();
 
             var user = db.Users.FirstOrDefault(u => u.UserName == username);
-
+            
             while (user == null || user.Name == "UNKNOWN")
             {
                 Console.WriteLine("Wrong username. Try again!");
