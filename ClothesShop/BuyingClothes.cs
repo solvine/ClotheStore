@@ -108,7 +108,7 @@ namespace ClothesShop
                 ActionMenu.ChooseUserActions(db);
             }
         }
-    }
+    } 
 
 
 }

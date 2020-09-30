@@ -24,6 +24,7 @@ namespace ClothesShop
             {
                 Console.WriteLine("Wrong username. Try again!");
                 username = Console.ReadLine();
+                user = db.Users.FirstOrDefault(u => u.UserName == username);
             }
             UserName = username;
             UserId = user.UserId;
